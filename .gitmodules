@@ -4,6 +4,3 @@
 [submodule "src/email"]
 	path = src/email
 	url = https://github.com/KerryL/email.git
-[submodule "src/logging"]
-	path = src/logging
-	url = https://github.com/KerryL/logging.git
