@@ -1,0 +1,23 @@
+# Ignore MSVC++ binary and object directories
+Debug/
+Release/
+ipch/
+
+*.suo
+*.sdf
+*.opensdf
+*.db
+*.opendb
+*.log
+
+.*Cookies
+config
+.oAuthToken
+*.config
+
+# Ignore GKT directories
+bin/
+.obj/
+
+*.tmp
+*.csv
