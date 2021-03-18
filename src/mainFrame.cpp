@@ -241,10 +241,12 @@ void MainFrame::LoadConfiguration()
 	}
 
 	tempString.Clear();
-	if (config->Read(_T("/search/cvs/knownLocations"), &tempString && !tempString.IsEmpty()))
+	if (config->Read(_T("/search/cvs/knownLocations"), &tempString) && !tempString.IsEmpty())
 	{
 		cvsLocationCheckListBox->Clear();
 		cvsLocationCheckListBox->InsertItems(ConfigStringToArray(tempString), 0);
+		for (unsigned int i = 0; i < cvsLocationCheckListBox->GetCount(); ++i)
+			cvsLocationCheckListBox->Check(i);
 
 		tempString.Clear();
 		if (config->Read(_T("/search/cvs/excludeLocations"), &tempString) && !tempString.IsEmpty())
@@ -256,7 +258,7 @@ void MainFrame::LoadConfiguration()
 				{
 					if (cvsLocationCheckListBox->GetString(i) == loc)
 					{
-						cvsLocationCheckListBox->Check(i);
+						cvsLocationCheckListBox->Check(i, false);
 						break;
 					}
 				}
@@ -300,25 +302,11 @@ wxArrayString MainFrame::GetRiteAidLocations(const bool& encoded) const
 wxArrayString MainFrame::GetCVSExcludeLocations() const
 {
 	wxArrayInt selections;
-	cvsLocationCheckListBox->GetSelections(selections);
-	wxArrayInt notSelections;
-	for (int i = cvsLocationCheckListBox->GetCount(); i > 0; --i)
-	{
-		bool include(true);
-		for (const auto& s : selections)
-		{
-			if (i == s)
-			{
-				include = false;
-				break;
-			}
-		}
-		if (include)
-			notSelections.Add(i);
-	}
+	cvsLocationCheckListBox->GetCheckedItems(selections);
+	selections.Sort([](int* a, int* b) ->int { return *a < *b; });
 	
 	auto locations(cvsLocationCheckListBox->GetStrings());
-	for (const auto& i : notSelections)
+	for (const auto& i : selections)
 		locations.RemoveAt(i);
 	return locations;
 }

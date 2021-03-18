@@ -14,7 +14,7 @@ class RiteAidTarget : public FinderTarget
 public:
 	RiteAidTarget(const UString::String& url, MainFrame* mainFrame, const std::vector<UString::String>& locations,
 		const unsigned int& checkPeriod, const bool& phillyMode) : FinderTarget(url, mainFrame,
-			checkPeriod, _T("Rite Aid Checker")), locations(locations), phillyMode(phillyMode) {}
+			checkPeriod, _T("Rite Aid")), locations(locations), phillyMode(phillyMode) {}
 	~RiteAidTarget();
 
 protected:

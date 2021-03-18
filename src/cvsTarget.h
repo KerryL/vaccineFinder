@@ -13,7 +13,7 @@ class CVSTarget : public FinderTarget
 {
 public:
 	CVSTarget(const UString::String& url, MainFrame* mainFrame, const unsigned int& checkPeriod, const std::vector<UString::String>& excludeLocations)
-		: FinderTarget(url, mainFrame, checkPeriod, _T("CVS Checker")), excludeLocations(MakeListAllCaps(excludeLocations)) {}
+		: FinderTarget(url, mainFrame, checkPeriod, _T("CVS")), excludeLocations(MakeListAllCaps(excludeLocations)) {}
 	~CVSTarget();
 
 protected:

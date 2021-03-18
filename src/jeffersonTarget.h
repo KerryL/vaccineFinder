@@ -13,7 +13,7 @@ class JeffersonTarget : public FinderTarget
 {
 public:
 	JeffersonTarget(const UString::String& url, MainFrame* mainFrame,
-		const unsigned int& checkPerod) : FinderTarget(url, mainFrame, checkPerod, _T("Jefferson Checker")) {}
+		const unsigned int& checkPerod) : FinderTarget(url, mainFrame, checkPerod, _T("Jefferson")) {}
 
 protected:
 	bool AppointmentsAvailable(std::string& message) override;
